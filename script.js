@@ -1,59 +1,39 @@
-// La Capilla — interacciones estáticas. No implementa login/comentarios propios (lo hace comments.js ITM).
+// La Capilla — interacciones base. No implementa login ni comentarios propios:
+// eso lo renderiza https://itm-void-excepcional.pages.dev/comments.js
 (function(){
-  var toggle = document.getElementById('menuToggle');
-  var mobile = document.getElementById('mobileNav');
-  if(toggle && mobile){
-    toggle.addEventListener('click', function(){
-      var open = mobile.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  var toggle=document.getElementById('navToggle');
+  var list=document.getElementById('navList');
+  if(toggle&&list){
+    toggle.addEventListener('click',function(){
+      var open=list.classList.toggle('open');
+      toggle.setAttribute('aria-expanded',open?'true':'false');
     });
-    mobile.querySelectorAll('a').forEach(function(a){
-      a.addEventListener('click', function(){ mobile.classList.remove('open'); });
+    list.addEventListener('click',function(e){
+      if(e.target.tagName==='A'){list.classList.remove('open');toggle.setAttribute('aria-expanded','false');}
     });
   }
-
-  // Filtro menú
-  var chips = document.querySelectorAll('.chip');
-  var cards = document.querySelectorAll('#menuGrid .card[data-cat]');
-  chips.forEach(function(chip){
-    chip.addEventListener('click', function(){
-      chips.forEach(function(c){ c.classList.remove('active'); });
-      chip.classList.add('active');
-      var f = chip.getAttribute('data-filter');
-      cards.forEach(function(card){
-        var cats = (card.getAttribute('data-cat')||'').split(' ');
-        if(f === 'all' || cats.indexOf(f) !== -1){ card.classList.remove('hide'); }
-        else { card.classList.add('hide'); }
+  // Filtro de menú
+  var chips=document.querySelectorAll('.chip');
+  var dishes=document.querySelectorAll('.dish');
+  chips.forEach(function(c){
+    c.addEventListener('click',function(){
+      chips.forEach(function(x){x.classList.remove('active')});
+      c.classList.add('active');
+      var f=c.getAttribute('data-filter');
+      dishes.forEach(function(d){
+        d.style.display=(f==='all'||d.getAttribute('data-cat')===f)?'':'none';
       });
     });
   });
-
-  // Formulario reserva -> mensaje listo para teléfono (no backend, no publica nada)
-  var form = document.getElementById('reserveForm');
-  var out = document.getElementById('reserveOut');
-  if(form){
-    // fecha mínima hoy
-    var dia = form.querySelector('input[name="dia"]');
-    if(dia){ dia.min = new Date().toISOString().slice(0,10); }
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
-      var d = new FormData(form);
-      var txt = 'Hola La Capilla, soy ' + (d.get('nombre')||'') +
-        '. Quisiera mesa para ' + (d.get('personas')||'') +
-        ' el ' + (d.get('dia')||'') + ' a las ' + (d.get('hora')||'') +
-        '. Llamo al 0987654321. Gracias.';
-      if(out){ out.textContent = txt; }
-    });
-  }
-
-  // Suavizar anclas en navegadores viejos (mejora menor)
-  document.querySelectorAll('a[href^="#"]').forEach(function(a){
-    a.addEventListener('click', function(e){
-      var id = a.getAttribute('href');
-      if(id.length > 1){
-        var t = document.querySelector(id);
-        if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth', block:'start'}); }
-      }
+  // Lightbox galería
+  var lb=document.getElementById('lightbox'),img=document.getElementById('lbImg'),close=document.getElementById('lbClose');
+  document.querySelectorAll('.gal').forEach(function(b){
+    b.addEventListener('click',function(){
+      img.src=b.getAttribute('data-full');
+      img.alt=b.querySelector('img').alt;
+      lb.hidden=false;
     });
   });
+  if(close)close.addEventListener('click',function(){lb.hidden=true;img.src='';});
+  if(lb)lb.addEventListener('click',function(e){if(e.target===lb){lb.hidden=true;img.src='';}});
 })();
