@@ -1,1 +1,160 @@
-{"media_requests":[{"category":"place","fallback":"GR-AI","label":"Hero principal restaurante elegante","page":"home","priority":"high","query":"elegant mexican restaurant interior, warm lighting, premium dining room","section":"hero","slot_id":"home-hero-main","source":"search","theme":"elegant premium restaurant in Campeche, high contrast"},{"category":"place","fallback":"GR-AI","label":"Interior nosotros","page":"home","priority":"high","query":"cozy elegant restaurant dining area with wooden tables, Campeche style","section":"about","slot_id":"home-about-interior","source":"search","theme":"elegant premium restaurant in Campeche, high contrast"},{"category":"dish","fallback":"GR-AI","label":"Platillo firma 1","page":"menu","priority":"high","query":"traditional Campeche mexican dish, pan de cazon, elegant plating","section":"featured-menu","slot_id":"menu-featured-dish-1","source":"search","theme":"elegant mexican cuisine, premium plating"},{"category":"dish","fallback":"GR-AI","label":"Platillo firma 2","page":"menu","priority":"high","query":"mexican seafood dish, grilled fish with rice, elegant restaurant plating","section":"featured-menu","slot_id":"menu-featured-dish-2","source":"search","theme":"elegant mexican cuisine, premium plating"},{"category":"dish","fallback":"GR-AI","label":"Platillo firma 3","page":"menu","priority":"medium","query":"traditional mexican tacos, cochinita pibil, elegant presentation","section":"featured-menu","slot_id":"menu-featured-dish-3","source":"search","theme":"elegant mexican cuisine, premium plating"},{"category":"dish","fallback":"GR-AI","label":"Platillo firma 4","page":"menu","priority":"medium","query":"mexican dessert, flan napolitano with caramel, elegant plating","section":"featured-menu","slot_id":"menu-featured-dish-4","source":"search","theme":"elegant mexican cuisine, premium plating"},{"category":"gallery","fallback":"GR-AI","label":"Galería ambiente 1","page":"home","priority":"medium","query":"restaurant chef preparing mexican food in elegant kitchen","section":"gallery","slot_id":"home-gallery-1","source":"search","theme":"elegant premium restaurant in Campeche, high contrast"},{"category":"gallery","fallback":"GR-AI","label":"Galería ambiente 2","page":"home","priority":"medium","query":"friends enjoying dinner at elegant mexican restaurant table","section":"gallery","slot_id":"home-gallery-2","source":"search","theme":"elegant premium restaurant in Campeche, high contrast"},{"category":"place","fallback":"GR-AI","label":"Salón comedor","page":"home","priority":"medium","query":"elegant restaurant dining room interior with candles, premium atmosphere","section":"place","slot_id":"home-place-dining","source":"search","theme":"elegant premium restaurant in Campeche, high contrast"},{"category":"place","fallback":"GR-AI","label":"Fachada local","page":"contact","priority":"low","query":"charming mexican restaurant facade in Campeche colonial street, daytime","section":"location","slot_id":"contact-place-exterior","source":"search","theme":"elegant premium restaurant in Campeche, high contrast"},{"category":"custom","fallback":"GR-AI","label":"Fondo textura relleno","page":"home","priority":"low","query":"dark elegant texture background for restaurant banner","section":"promo-banner","slot_id":"home-promo-bg","source":"generic","theme":"elegant premium, high contrast filler"},{"category":"custom","fallback":"GR-AI","label":"Fondo decorativo relleno","page":"menu","priority":"low","query":"subtle premium pattern background for menu section","section":"menu-divider","slot_id":"menu-divider-bg","source":"generic","theme":"elegant premium filler"}]}
+{
+  "media_requests": [
+    {
+      "slot_id": "hero-banner",
+      "page": "home",
+      "section": "hero",
+      "category": "custom",
+      "label": "Banner principal del restaurante",
+      "theme": "elegant, premium, Campeche Mexico restaurant ambiance, warm lighting, high contrast",
+      "query": "elegant Mexican restaurant interior warm lighting Campeche ambiance premium dining",
+      "priority": "high",
+      "source": "search",
+      "fallback": "GR-AI"
+    },
+    {
+      "slot_id": "hero-cover",
+      "page": "home",
+      "section": "hero",
+      "category": "custom",
+      "label": "Imagen de portada alternativa",
+      "theme": "elegant restaurant table setting, gourmet presentation, premium feel",
+      "query": "gourmet restaurant table setting elegant plating premium dining experience",
+      "priority": "medium",
+      "source": "search",
+      "fallback": "GR-AI"
+    },
+    {
+      "slot_id": "dish-featured-1",
+      "page": "home",
+      "section": "featured_dishes",
+      "category": "dish",
+      "label": "Plato destacado 1 - Fuerte principal",
+      "theme": "elegant food photography, gourmet Mexican dish, premium plating, high contrast",
+      "query": "gourmet Mexican main course elegant food photography premium plating Campeche",
+      "priority": "high",
+      "source": "search",
+      "fallback": "GR-AI"
+    },
+    {
+      "slot_id": "dish-featured-2",
+      "page": "home",
+      "section": "featured_dishes",
+      "category": "dish",
+      "label": "Plato destacado 2 - Entrada",
+      "theme": "elegant appetizer, gourmet Mexican starter, premium presentation",
+      "query": "elegant Mexican appetizer gourmet starter premium food photography",
+      "priority": "medium",
+      "source": "search",
+      "fallback": "GR-AI"
+    },
+    {
+      "slot_id": "dish-featured-3",
+      "page": "home",
+      "section": "featured_dishes",
+      "category": "dish",
+      "label": "Plato destacado 3 - Postre",
+      "theme": "elegant dessert, gourmet Mexican sweet, premium plating, warm tones",
+      "query": "elegant Mexican dessert gourmet sweet premium food photography warm tones",
+      "priority": "medium",
+      "source": "search",
+      "fallback": "GR-AI"
+    },
+    {
+      "slot_id": "gallery-food-1",
+      "page": "gallery",
+      "section": "gallery",
+      "category": "gallery",
+      "label": "Galería - Plato tradicional",
+      "theme": "traditional Campeche Mexican dish, elegant food photography, premium",
+      "query": "traditional Campeche Mexican cuisine elegant food photography premium restaurant",
+      "priority": "high",
+      "source": "search",
+      "fallback": "GR-AI"
+    },
+    {
+      "slot_id": "gallery-food-2",
+      "page": "gallery",
+      "section": "gallery",
+      "category": "gallery",
+      "label": "Galería - Postre artesanal",
+      "theme": "artisan dessert, gourmet Mexican pastry, elegant presentation",
+      "query": "artisan Mexican dessert gourmet pastry elegant food photography restaurant",
+      "priority": "medium",
+      "source": "search",
+      "fallback": "GR-AI"
+    },
+    {
+      "slot_id": "gallery-ambiance",
+      "page": "gallery",
+      "section": "gallery",
+      "category": "gallery",
+      "label": "Galería - Ambiente del restaurante",
+      "theme": "elegant restaurant interior, warm ambiance, premium dining atmosphere, Campeche style",
+      "query": "elegant restaurant interior warm ambiance premium dining atmosphere Campeche Mexico",
+      "priority": "high",
+      "source": "search",
+      "fallback": "GR-AI"
+    },
+    {
+      "slot_id": "gallery-decor",
+      "page": "gallery",
+      "section": "gallery",
+      "category": "gallery",
+      "label": "Galería - Detalles de decoración",
+      "theme": "restaurant decor details, elegant table setting, premium Mexican style",
+      "query": "elegant restaurant decor details table setting premium Mexican style warm lighting",
+      "priority": "low",
+      "source": "search",
+      "fallback": "GR-AI"
+    },
+    {
+      "slot_id": "place-exterior",
+      "page": "place",
+      "section": "place",
+      "category": "place",
+      "label": "Exterior del restaurante",
+      "theme": "elegant restaurant exterior entrance, Campeche Mexico, premium facade, warm evening",
+      "query": "elegant restaurant exterior entrance Campeche Mexico premium facade warm evening lighting",
+      "priority": "high",
+      "source": "search",
+      "fallback": "GR-AI"
+    },
+    {
+      "slot_id": "testimonials-bg",
+      "page": "home",
+      "section": "testimonials",
+      "category": "custom",
+      "label": "Fondo para sección de testimonios",
+      "theme": "abstract elegant restaurant pattern, warm tones, premium texture, subtle",
+      "query": "abstract elegant restaurant pattern warm tones premium texture subtle background",
+      "priority": "low",
+      "source": "search",
+      "fallback": "GR-AI"
+    },
+    {
+      "slot_id": "team-staff",
+      "page": "about",
+      "section": "team",
+      "category": "custom",
+      "label": "Foto del equipo / personal",
+      "theme": "restaurant staff team photo, professional, warm, elegant, Campeche style",
+      "query": "restaurant staff team professional photo warm elegant Mexican restaurant",
+      "priority": "medium",
+      "source": "generic",
+      "fallback": "GR-AI"
+    },
+    {
+      "slot_id": "menu-bg",
+      "page": "menu",
+      "section": "menu",
+      "category": "custom",
+      "label": "Fondo para página de menú",
+      "theme": "subtle elegant restaurant menu background, warm tones, premium texture, minimal",
+      "query": "subtle elegant restaurant menu background warm tones premium texture minimal design",
+      "priority": "low",
+      "source": "generic",
+      "fallback": "GR-AI"
+    }
+  ]
+}
