@@ -1,162 +1,92 @@
-/* La Capilla - Site Script */
-
 (function () {
   'use strict';
 
-  /* ============================================
-     NAVIGATION
-     ============================================ */
+  var navbar = document.getElementById('navbar');
+  var navToggle = document.getElementById('navToggle');
+  var navMenu = document.getElementById('navMenu');
+  var navLinks = document.querySelectorAll('.nav-link');
+  var sections = document.querySelectorAll('.section, .hero');
 
-  const header = document.getElementById('header');
-  const navToggle = document.getElementById('navToggle');
-  const mainNav = document.getElementById('mainNav');
-  const navLinks = mainNav.querySelectorAll('a');
-
+  // Mobile menu toggle
   navToggle.addEventListener('click', function () {
-    navToggle.classList.toggle('active');
-    mainNav.classList.toggle('active');
-    document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
+    navMenu.classList.toggle('open');
+    var spans = navToggle.querySelectorAll('span');
+    if (navMenu.classList.contains('open')) {
+      spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+      spans[1].style.opacity = '0';
+      spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+    } else {
+      spans[0].style.transform = '';
+      spans[1].style.opacity = '';
+      spans[2].style.transform = '';
+    }
   });
 
+  // Close mobile menu on link click
   navLinks.forEach(function (link) {
     link.addEventListener('click', function () {
-      navToggle.classList.remove('active');
-      mainNav.classList.remove('active');
-      document.body.style.overflow = '';
+      navMenu.classList.remove('open');
+      var spans = navToggle.querySelectorAll('span');
+      spans[0].style.transform = '';
+      spans[1].style.opacity = '';
+      spans[2].style.transform = '';
     });
   });
 
-  /* Active nav on scroll */
-  const sections = document.querySelectorAll('section[id]');
-
-  function updateActiveNav() {
-    var scrollY = window.scrollY + 120;
+  // Active link on scroll
+  function updateActiveLink() {
+    var scrollPos = window.scrollY + 100;
     sections.forEach(function (section) {
       var top = section.offsetTop;
       var height = section.offsetHeight;
       var id = section.getAttribute('id');
-      var link = mainNav.querySelector('a[href="#' + id + '"]');
-      if (link) {
-        if (scrollY >= top && scrollY < top + height) {
-          link.classList.add('active');
-        } else {
+      if (scrollPos >= top && scrollPos < top + height) {
+        navLinks.forEach(function (link) {
           link.classList.remove('active');
-        }
+          if (link.getAttribute('href') === '#' + id) {
+            link.classList.add('active');
+          }
+        });
       }
     });
   }
 
-  /* Header background on scroll */
-  function updateHeaderBg() {
-    if (window.scrollY > 50) {
-      header.style.background = 'rgba(10, 8, 6, 0.97)';
+  // Navbar background on scroll
+  function updateNavbar() {
+    if (window.scrollY > 80) {
+      navbar.style.background = 'rgba(15, 15, 15, 0.98)';
     } else {
-      header.style.background = 'rgba(10, 8, 6, 0.9)';
+      navbar.style.background = 'rgba(15, 15, 15, 0.92)';
     }
   }
 
-  /* ============================================
-     SCROLL REVEAL
-     ============================================ */
+  // Scroll animations with IntersectionObserver
+  var animateElements = document.querySelectorAll(
+    '.section-header, .nosotros-text, .nosotros-image, .menu-card, .gallery-item, .contacto-info, .contacto-map, .comments-explainer, .comments-widget'
+  );
 
-  function revealOnScroll() {
-    var reveals = document.querySelectorAll('.reveal');
-    var windowHeight = window.innerHeight;
-    reveals.forEach(function (el) {
-      var top = el.getBoundingClientRect().top;
-      if (top < windowHeight - 80) {
-        el.classList.add('visible');
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        observer.unobserve(entry.target);
       }
     });
-  }
+  }, { threshold: 0.1 });
 
-  /* ============================================
-     LIGHTBOX
-     ============================================ */
-
-  var lightbox = document.getElementById('lightbox');
-  var lightboxImg = document.getElementById('lightboxImg');
-  var lightboxClose = document.getElementById('lightboxClose');
-
-  document.querySelectorAll('.gallery-item[data-lightbox]').forEach(function (item) {
-    item.addEventListener('click', function () {
-      var src = item.getAttribute('data-lightbox');
-      if (src) {
-        lightboxImg.src = src;
-        lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
-    });
+  animateElements.forEach(function (el) {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
   });
 
-  if (lightboxClose) {
-    lightboxClose.addEventListener('click', closeLightbox);
-  }
+  window.addEventListener('scroll', function () {
+    updateActiveLink();
+    updateNavbar();
+  }, { passive: true });
 
-  if (lightbox) {
-    lightbox.addEventListener('click', function (e) {
-      if (e.target === lightbox) {
-        closeLightbox();
-      }
-    });
-  }
-
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-      closeLightbox();
-    }
-  });
-
-  function closeLightbox() {
-    lightbox.classList.remove('active');
-    lightboxImg.src = '';
-    document.body.style.overflow = '';
-  }
-
-  /* ============================================
-     SMOOTH SCROLL
-     ============================================ */
-
-  document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-    anchor.addEventListener('click', function (e) {
-      var targetId = this.getAttribute('href');
-      if (targetId === '#') return;
-      var target = document.querySelector(targetId);
-      if (target) {
-        e.preventDefault();
-        var offset = 80;
-        var top = target.getBoundingClientRect().top + window.scrollY - offset;
-        window.scrollTo({ top: top, behavior: 'smooth' });
-      }
-    });
-  });
-
-  /* ============================================
-     SCROLL LISTENER
-     ============================================ */
-
-  var ticking = false;
-
-  function onScroll() {
-    if (!ticking) {
-      window.requestAnimationFrame(function () {
-        updateActiveNav();
-        updateHeaderBg();
-        revealOnScroll();
-        ticking = false;
-      });
-      ticking = true;
-    }
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-
-  /* ============================================
-     INIT
-     ============================================ */
-
-  updateActiveNav();
-  updateHeaderBg();
-  revealOnScroll();
-
+  updateActiveLink();
+  updateNavbar();
 })();
